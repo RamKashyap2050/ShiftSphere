@@ -1,0 +1,22 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+.brand-icons{
+  width: 50px;
+  height: 50px;
+}
+.button-logo{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;  
+}
+
+
+.admin-dashboard-photo {
+  width: 260px;
+  height: 25%;
+  margin: auto;
+  border-radius: 50%;
+}
