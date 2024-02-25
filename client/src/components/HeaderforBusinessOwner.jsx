@@ -6,6 +6,8 @@ import {
   FaUser,
   FaFacebookMessenger,
   FaCalendar,
+  FaPlus,
+   FaListUl 
 } from "react-icons/fa";
 import { FaRegMessage } from "react-icons/fa6";
 import { MdOutlineSegment } from "react-icons/md";
@@ -14,10 +16,10 @@ import "../styles/Header.css";
 import myImage from "../SS.jpg";
 import { IoSettings } from "react-icons/io5";
 
-
-const HeaderforUser = () => {
+const HeaderforBusinessOwner = () => {
   return (
-    <header>
+    <div>
+          <header>
         <div
         style={{
           display: "flex",
@@ -28,28 +30,28 @@ const HeaderforUser = () => {
         }}
       >
         <div>
-          <Link to="/admin">
+          <Link to="/restaurent">
               <a href="#" className="brand-icons">
                 <img src={myImage} alt="Hello" className="button-logo" style={{marginBottom:"1rem"}} />
               </a>
           </Link>
         </div>
         <div>
-          <Link to="/adminoptions">
+          <Link to="/restaurentadditem">
               <a href="#" className="brand-icons">
-              <FaCalendar />
+              <FaPlus />
               </a>
           </Link>
         </div>
         <div>
-          <Link to="/adminoptions">
+          <Link to="/restaurentinventory">
               <a href="#" className="brand-icons">
-              <FaRegMessage />
+              <FaListUl />
               </a>
           </Link>
         </div>
         <div>
-          <Link to="/adminoptions">
+          <Link to="/restaurentoptions">
               <a href="#" className="brand-icons">
                 <IoSettings />
               </a>
@@ -57,7 +59,8 @@ const HeaderforUser = () => {
         </div>
       </div>
     </header>
-  );
-};
+    </div>
+  )
+}
 
-export default HeaderforUser;
+export default HeaderforBusinessOwner

@@ -114,6 +114,7 @@ const AdminAddManager = () => {
                 <MenuItem value="">Select an Option</MenuItem>
                 <MenuItem value="Manager">Manager</MenuItem>
                 <MenuItem value="BusinessOwner">Business Owner</MenuItem>
+                <MenuItem value="Chef">Chef</MenuItem>
               </Select>
             </Grid>
             <Grid item xs={12}>

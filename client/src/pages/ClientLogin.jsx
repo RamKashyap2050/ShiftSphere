@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"; // Make sure to import Link from 'react
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const AdminLogin = () => {
+const ClientLogin = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
@@ -25,22 +25,31 @@ const AdminLogin = () => {
     };
 
     try {
-      const response = await axios.post(`/Admin/login/`, adminData);
+      const response = await axios.post(`/Users/login/`, adminData);
       console.log("Response from backend:", response.data);
-      navigate('/admin');
-      localStorage.setItem("Admin", JSON.stringify(response.data));
+
+      const employeeRole = response.data.employee_role;
+
+      if (employeeRole === "BusinessOwner") {
+        navigate("/restaurent"); // replace with the appropriate navigation function
+      } else if (employeeRole === "manager") {
+        navigate("/manager"); // replace with the appropriate navigation function
+      } else {
+        navigate("/employee"); // replace with the appropriate navigation function
+      }
+
+      localStorage.setItem("Client", JSON.stringify(response.data));
     } catch (error) {
       console.error("Error sending data to backend:", error);
     }
   };
-
   return (
     <>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6">
             <section className="heading text-center mt-5">
-              <h1>Admin Login</h1>
+              <h1>Login</h1>
             </section>
             <hr className="my-4" />
             <section className="form">
@@ -77,11 +86,9 @@ const AdminLogin = () => {
                 </div>
               </form>
               <p className="text-center">
-                <Link to="/forgotpasswordAdmin">Reset password?</Link>
+                <Link to="/forgotpassword">Reset Password?</Link>
               </p>
-              <p className="text-center">
-                <Link to="/">Go Back to Landing Page</Link>
-              </p>
+           
             </section>
           </div>
         </div>
@@ -90,4 +97,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default ClientLogin;
