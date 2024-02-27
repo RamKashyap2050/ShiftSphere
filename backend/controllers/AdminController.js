@@ -7,7 +7,6 @@ const Restaurent = require("../models/RestaurentModel");
 const Employee = require("../models/EmployeeModel");
 const nodemailer = require("nodemailer");
 const OTPModel = require("../models/OTPModel");
-const { promises } = require("nodemailer/lib/xoauth2");
 const loginAdmin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
@@ -171,22 +170,16 @@ const change_password = asyncHandler(async (req, res) => {
       </body>
       </html>`,
     };
-
-    await new promises((resolve, reject) => {
+    await new Promise((resolve, reject) => {
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           res.status(401).json({ status: 401, message: "email not send" });
-          reject(err);
+          reject(error);
         } else {
-          resolve(info);
-          res
-            .status(201)
-            .json({ status: 201, message: "Email sent Succsfully" });
+          res.status(202).json({ email, hashedmetadata });
         }
       });
     });
-
-    res.status(202).json({ email, hashedmetadata });
   } catch (error) {
     res.status(401).json({ status: 401, message: "invalid user" });
   }
